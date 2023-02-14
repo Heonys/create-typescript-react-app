@@ -1,0 +1,30 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "#### cra에 너무 의존하지 말고, 직접 react 개발 세팅을 해보자",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heonys/create-typescript-react-app.git"
+  },
+  "author": "jiheon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Heonys/create-typescript-react-app/issues"
+  },
+  "homepage": "https://github.com/Heonys/create-typescript-react-app#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/webpack": "^5.28.0",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
