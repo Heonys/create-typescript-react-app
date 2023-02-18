@@ -1,28 +1,50 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = {
-  mode: "development", // production
-  devtool: "eval", // hidden-source-map
-  resolve: {
-    extensions: [".jsx", ".js", ".tsx", ".ts"],
-  },
+module.exports = (env, argv) => {
+  const prod = argv.mode === "production";
 
-  entry: {
-    app: "./client",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-      },
+  return {
+    mode: prod ? "production" : "development",
+    devtool: prod ? "hidden-source-map" : "eval",
+    entry: "./index.tsx",
+    output: {
+      path: path.join(__dirname, "/dist"),
+      filename: "bundle.js",
+    },
+    devServer: {
+      port: 3000,
+      hot: true,
+      open: true,
+    },
+    resolve: {
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: ["babel-loader", "ts-loader"],
+        },
+      ],
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        React: "react",
+      }),
+      new HtmlWebpackPlugin({
+        template: "./public/inedx.html",
+        minify:
+          process.env.NODE_ENV === "production"
+            ? {
+                collapseWhitespace: true, // 빈칸 제거
+                removeComments: true, // 주석 제거
+              }
+            : false,
+      }),
+      new CleanWebpackPlugin(),
     ],
-  },
-  plugins: [],
-  output: {
-    filename: "app.js",
-    path: path.join(__dirname, "dist"),
-    publicPath: "/dist",
-  },
+  };
 };

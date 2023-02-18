@@ -10,27 +10,42 @@
 
 ```
 npm install typescript react react-dom
+npm install @types/react @types/react-dom ts-loader
+// React는 type을 제공하지 않기때문에 커뮤니티에서 만든 패키지 설치
 ```
 
 ### 3. 웹팩 설치
 
-리액트는 웹에서 실행할 수 없기떄문에 모듈 번들러 설치
+리액트는 웹에서 실행할 수 없기떄문에 모듈 번들러 웹팩과 관련 패키지 설치
 
 ```
-npm install webpack webpack-cli @types/webpack -D
+npm install webpack webpack-cli @types/webpack webpack-dev-server -D
+npm install html-webpack-plugin clean-webpack-plugin -D
 ```
 
-### 4. ts-loader 설치
-
-웹팩과 Typescript 연결을 위한 로더 설치
+### 4. Babel 설치
 
 ```
-$ npm install ts-loader -D
+npm install babel-loader @babel/core -D
+npm install @babel/preset-env @babel/preset-react @babel/preset-typescript -D
+```
+
+#### babel.config.js 파일 생성
+
+```
+module.exports = {
+  presets: [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+  ],
+};
 ```
 
 ### 5. 웹팩 설정
 
-webpack.config.js 파일 생성
+웹팩 설정파일 생성
+webpack.config.js 설정파일 참고
 
 ### 6. 타입스크립트 설정
 
