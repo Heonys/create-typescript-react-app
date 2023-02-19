@@ -1,7 +1,12 @@
 import React from "react";
+import TestApp from "./src/components/TestApp";
 
 const App = () => {
-  return <h1>create-typescipt-react-app</h1>;
+  return (
+    <>
+      <TestApp />
+    </>
+  );
 };
 
 export default App;
